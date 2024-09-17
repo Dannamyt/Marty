@@ -1,0 +1,15 @@
+.product-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 16px;
+  text-align: center;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-list .product-card {
+  flex: 1 0 21%; /* Adjust the width of the product cards */
+}
