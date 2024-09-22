@@ -27,13 +27,13 @@ function ProductDetails(){
 
   const handleIncrement = () => {
     setOrderQty(prevQuantity => prevQuantity + 1);
-    updateQuantity(products.id, orderQty + 1); 
+    // updateQuantity(products.id, orderQty + 1); 
   };
 
   const handleDecrement = () => {
     if (orderQty > 1) {
       setOrderQty(prevQuantity => prevQuantity - 1);
-      updateQuantity(products.id, orderQty - 1); 
+    //   updateQuantity(products.id, orderQty - 1); 
     }
   };
 
@@ -46,17 +46,17 @@ console.log(orderQty)
 
   };
 
-
+console.log(products?.reviews)
 
 
     return(
         <>
-        <div>
+        <div className="p-10">
             {isPending && <div>Loading...</div>}
             {error && <div>{error}</div>}
             {  products && (
                 <div>
-                    <div className="flex justify-center  h-screen basis-1/2 w-full ">
+                    <div className="flex justify-center items-center  h-screen basis-1/2 w-full ">
                         <div className="basis-1/2 p-32">
                             {url &&     <img src={url} alt="" className="w-full" />}                              
                                 <div className="flex justify-center gap-4">
@@ -66,30 +66,33 @@ console.log(orderQty)
                                         className=" cursor-pointer" 
                                         onClick={() => setUrl(image)}
                                     >
-                                        <img src={image} alt={`Thumbnail ${index + 1}`} className="w-20" />
-                                    </div>
+{                           products.images.length>1 &&             <img src={image} alt={`Thumbnail ${index + 1}`} className="w-16 border-solid border-2 rounded-xl border-gray-800" />
+}                                    </div>
                                     ))}
                                </div>
                         </div>
-                        <div className="  basis-1/2">
+                        <div className="  basis-1/2 p-8">
                             <div className="text    w-full">
-                                <h1 className="  text-4xl font-bold font-ibm "  > {products?.title}</h1>
-                                <h2 className=" font-semibold font-ibm text-red-600">$ {products?.price} <span className="font-normal">({products?.stock})</span></h2>
-                                <h2 className="  text-gray-500 w-3/5 font-ibm"> {products?.description}</h2>
-                                <div className="flex gap-16">
-                                    <div>
-                                        <button className="px-4 py-4  bg-gray-400 text-white text-2xl font-medium font-ibm"
+                                <p className="  text-4xl font-medium font-libre "  > {products?.title}helo</p>
+                                <h2 className="  font-libre text-gray-500">$ {products?.price} <span className="font-normal">({products?.stock})</span></h2>
+                                <h2 className="   py-2 w-4/5 font-switzer text-gray-900"> {products?.description}</h2>
+                                
+                                
+                                <div className=" gap-16">
+                                    <div className="my-4">
+                                        <button className="px-2 py-1 border-solid border-2 text-2xl font-medium font-ibm"
                                             onClick={handleDecrement}>
                                                 -
                                         </button>
-                                        <span className="px-4 py-2 font-medium text-2xl font-ibm">{orderQty}</span>
+                                        <span className="px-4 py-4 font-medium text-xl font-ibm">{orderQty}</span>
                                         <button 
-                                            className="px-4 py-4  bg-gray-400 text-white  text-2xl font-medium font-ibm"
+                                            className="px-2 py-1 border-solid border-2    text-2xl font-medium font-ibm"
                                             onClick={handleIncrement}
                                             >+
                                         </button>
                                      </div>
-                                   <button onClick={handleAddToCart}>Add To Cart</button>
+                                   <button  className="bg-gray-900 ease-in delay-200 hover:bg-gray-600 m
+                                    w-56 text-white font-bold p-2 my-3 rounded" onClick={handleAddToCart}>Add To Cart</button>
                                     </div>
                             </div>
                            
@@ -100,16 +103,8 @@ console.log(orderQty)
                 </div>
             )}
             
-           {/* { products && <div>
-                {products.reviews.map((product)=>
-                <div key={product.id}>
-                    <p>{product.rating}</p>
-                    <p>{product.comment}</p>
-                    <p>{product.reviewerName}</p>
-                </div>
-                )}
-            </div>} */}
         </div>
+      
         
         </>
     )

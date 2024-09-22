@@ -80,12 +80,3 @@ export const signOutUser = async ()=> await signOut(auth)
 export const onAuthStateChangedListener = (callback) =>
     onAuthStateChanged(auth,callback)
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyBeSsa-YajzW5-NUtl6OY7QSZYFBfHIjF0",
-//     authDomain: "e-commerce-test-1cf0e.firebaseapp.com",
-//     projectId: "e-commerce-test-1cf0e",
-//     storageBucket: "e-commerce-test-1cf0e.appspot.com",
-//     messagingSenderId: "18693510729",
-//     appId: "1:18693510729:web:402f47b5eecb41c11a1198"
-//   };
-  

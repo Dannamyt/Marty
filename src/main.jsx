@@ -10,6 +10,8 @@ import { UserProvider } from './context/UserContext.jsx'
 import './index.css'
 import { Elements } from '@stripe/react-stripe-js'
 import { stripePromise } from './utils/stripe/stripe.jsx'
+import { PaymentProvider, usePayment } from './context/PaymentContext.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,9 +19,9 @@ createRoot(document.getElementById('root')).render(
       <UserProvider>
         <CategoryProvider>
           <CartProvider>
-              <Elements stripe={stripePromise}>
-                <App />
-              </Elements>
+          <Elements stripe={stripePromise} >
+            <App />
+        </Elements>
           </CartProvider>
         </CategoryProvider>
       </UserProvider>

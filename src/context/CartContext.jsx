@@ -52,6 +52,9 @@ export const CartProvider = ({ children }) => {
     return cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+};
   // Log current cart items for debugging
   console.log(cartItems);
 
@@ -62,8 +65,9 @@ export const CartProvider = ({ children }) => {
     removeFromCart,
     updateQuantity,
     cartCount: cartCount(), // Call the function to get the current count
-    cartTotal: cartTotal(), // Call the function to get the current total
-  };
+    cartTotal: cartTotal(),
+    clearCart
+    };
 
   return (
     <CartContext.Provider value={value}>

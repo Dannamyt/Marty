@@ -1,44 +1,57 @@
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { CardElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
+import { usePayment } from "../context/PaymentContext.jsx";
 
 function PaymentForm() {
     const { currentUser } = useContext(UserContext);
-    const { cartTotal } = useContext(CartContext);
+    const { cartTotal,clearCart } = useContext(CartContext);
     
     const stripe = useStripe();
     const elements = useElements();
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-
+    
     const paymentHandler = async (e) => {
         e.preventDefault();
-
+    
         if (!stripe || !elements) return;
-
+    
         setIsProcessingPayment(true); // Start processing
-
+    
+        // Calculate amount in cents and round it
+        const amountInCents = Math.round(cartTotal * 100); // Convert total to cents and round
+        console.log('Amount being charged:', amountInCents); // Log for debugging
+    
+        const minimumChargeAmount = 50; // Minimum charge in cents
+    
+        if (amountInCents < minimumChargeAmount) {
+            alert(`The minimum charge amount is $${minimumChargeAmount / 100}. Please add more items to your cart.`);
+            setIsProcessingPayment(false); // Reset processing state
+            return;
+        }
+    
         try {
             const response = await fetch('/.netlify/functions/create-payment-intent', {
-                method: 'post',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ amount: cartTotal * 100 }), // Amount in cents
+                body: JSON.stringify({ amount: amountInCents }), // Amount in cents
             });
-
-            console.log(response)
-
+    
             if (!response.ok) {
-                const errorMessage = await response.text(); // Get the raw error message
+                const errorMessage = await response.text();
                 console.error('Error creating payment intent:', errorMessage);
                 alert('Failed to create payment intent. Please try again.');
-                setIsProcessingPayment(false); // Reset processing state
+                setIsProcessingPayment(false);
                 return;
             }
-
+    
             const { paymentIntent: { client_secret } } = await response.json();
-
+            
+            
+            
             const paymentResult = await stripe.confirmCardPayment(client_secret, {
                 payment_method: {
                     card: elements.getElement(CardElement),
@@ -47,32 +60,37 @@ function PaymentForm() {
                     },
                 },
             });
-
+    
             setIsProcessingPayment(false); // Reset processing state
-
+    
             if (paymentResult.error) {
                 alert(paymentResult.error.message);
             } else {
                 if (paymentResult.paymentIntent.status === 'succeeded') {
                     alert('Payment successful!');
-                    // Optionally clear cart or redirect user
+                    clearCart()
                 }
             }
         } catch (error) {
             console.error('Error during payment processing:', error);
             alert('An unexpected error occurred. Please try again.');
-            setIsProcessingPayment(false); // Reset processing state
+            setIsProcessingPayment(false);
         }
     };
-
     return (
         <>
-            <form onSubmit={paymentHandler}>
-                <CardElement />
-                <button disabled={!stripe || isProcessingPayment}>
-                    {isProcessingPayment ? "Processing..." : "Pay Now"}
-                </button>
-            </form>
+           <form onSubmit={paymentHandler} className="flex flex-col space-y-4">
+    <div className="w-full">
+        <CardElement className="border border-gray-300 rounded-lg p-2" />
+    </div>
+    <button 
+        type="submit" 
+        disabled={!stripe || isProcessingPayment} 
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
+    >
+        {isProcessingPayment ? "Processing..." : "Pay Now"}
+    </button>
+</form>
         </>
     );
 }

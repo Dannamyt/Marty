@@ -6,15 +6,14 @@ const CategoryList = ({ categories, selectedCategory, setSelectedCategory }) => 
 
   return (
     <div>
-      <h3>Categories</h3>
-      <ul>
+      <ul className="flex gap-10 font-switzer justify-center mx-9 mt-20">
         {categories.map((category) => (
           <li
             key={category}
             onClick={() => handleCategorySelect(category)}
-            style={{ cursor: 'pointer', fontWeight: selectedCategory === category ? 'bold' : 'normal' }}
+            style={{ cursor: 'pointer', fontWeight: selectedCategory === category ? 'bold' : 'normal' }} className="text-xl"
           >
-            {category}
+            {category.toUpperCase()}
           </li>
         ))}
       </ul>
