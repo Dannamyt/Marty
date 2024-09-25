@@ -58,7 +58,10 @@ function NavBar() {
             {isMobileMenuOpen && (
                 <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-400 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                     <div className="flex justify-end p-4">
-                        <button onClick={toggleMobileMenu} className="text-gray-600">
+                    {cartCount > 0 && (
+                            <span className="absolute top-0 right-7 bg-red-500 text-white rounded-full text-xs px-1">
+                                {cartCount}
+                            </span>)} <button onClick={toggleMobileMenu} className="text-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -72,7 +75,7 @@ function NavBar() {
                         ) : (
                             <NavLink to="/authentication" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">SIGN IN</NavLink>
                         )}
-                        <NavLink to={'/checkout'} className={`block px-4 py-2 hover:bg-gray-200 w-full text-center`}>
+                        <NavLink to={'/cart'} className={`block px-4 py-2 hover:bg-gray-200 w-full text-center`}>
                             CART({cartCount})
                         </NavLink>
                     </div>

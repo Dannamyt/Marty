@@ -7,15 +7,15 @@ import rightArrow2 from '../assets/rightArrow2.png';
 const Hero = () => {
     return (
         <div>
-            <div className="relative flex items-center">
+            <div className="relative flex flex-col items-center">
                 <img
                     src={banner7}
                     alt="Fashion Banner"
                     className="w-full h-screen object-cover rounded-lg"
                 />
-                <div className="absolute top-40 left-8 p-6">
-                    <h1 className="text-4xl md:text-6xl w-4/6 font-bold mb-4">EXPERIENCE LUXURY EVERYDAY</h1>
-                    <p className='w-50 md:w-96 font-switzer my-2'>
+                <div className="absolute top-40 left-8 md:p-6 md:top-60 p-0">
+                    <h1 className="text-4xl  md:text-6xl w-4/6 font-bold mb-4">EXPERIENCE LUXURY EVERYDAY</h1>
+                    <p className='w-1/2 md:w-96 sm:w-1/2 sm:flex font-switzer my-2'>
                         From the scent that sets the mood to the furniture that shapes your space, we bring you a curated collection of quality products. Find everyday essentials and luxury items, all designed to elevate your life.
                     </p>
                     <button className="flex items-center bg-gray-900 hover:bg-gray-600 text-white font-bold py-1 px-8 rounded">
