@@ -6,7 +6,7 @@ function Footer() {
             <div className="flex flex-col md:flex-row justify-between">
                 <div className="mb-4 md:mb-0">
                     <p className="font-semibold">Join Our Community</p>
-                    <div className="max-w-xs mx-auto mt-2">
+                    <div className="max-w-xs  mt-2">
                         <input 
                             type="email" 
                             id="email" 
@@ -41,7 +41,7 @@ function Footer() {
             </div>
             <div className="flex flex-col md:flex-row justify-between mt-8">
                 <div>
-                    <p>2024 SHOPSYDEE ALL RIGHTS RESERVED</p>
+                    <p>2024 <span>AuraLuxe</span> ALL RIGHTS RESERVED</p>
                 </div>
                 <div className="flex gap-8 mt-4 md:mt-0">
                     <a href="#" className="hover:underline">INSTAGRAM</a>

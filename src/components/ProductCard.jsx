@@ -17,15 +17,15 @@ const ProductCard = ({ product }) => {
       <NavLink to={`/products/${product.id}`}>
         <div>
         
-          <img src={product.thumbnail|| <Skeleton count={5}/>} alt={product.title} className="w-full flex-shrink-0 border-solid border border-gray-800" />
+          <img src={product.thumbnail|| <Skeleton count={5}/>} alt={product.title} className="w-full flex-shrink-0  border-gray-800" />
                      
           </div>
-        <p className='text-2xl font-switzer truncate max-w-xs'>{product.title || <Skeleton/>}</p>
+        <p className='text-xl font-switzer truncate max-w-xs'>{product.title || <Skeleton/>}</p>
         {/* <p>{product.description}</p> */}
       </NavLink>
       <div className=' '>
         <p className=' font-ibm '> ${product.price}</p>
-        <button onClick={handleAddToCart} className=' bg-yellow-600 text-white text-1xl px-4 py-2 font-switzer'>Add to Cart</button>
+        <button onClick={handleAddToCart} className=' bg-gray-800 text-white text-1xl border-solid  px-4 py-1 font-switzer'>Add to Cart</button>
       </div></div>
   );
 };

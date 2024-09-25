@@ -5,6 +5,7 @@ import {
     createUserDocumentFromAuth 
 } from "../../utils/firebase.utils";
 
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
     const [userDetails, setUserDetails] = useState({
@@ -16,9 +17,14 @@ function SignUp() {
 
     const { displayName, email, password } = userDetails;
     const [errorMessage, setErrorMessage] = useState('')
+    const navigate = useNavigate()
     
     function resetFormFields() {
-        setUserDetails(initialField);
+        setUserDetails({
+            displayName: '',
+            email: '',
+            password: ''
+        });
         console.log('cleared')
     }
     function clearField(){
@@ -38,6 +44,7 @@ function SignUp() {
             console.log(user);
             clearField()
             resetFormFields();
+            navigate('/welcome')
         } 
         
         catch (error) {

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
 import { usePayment } from "../context/PaymentContext.jsx";
+import { useNavigate } from 'react-router-dom'
 
 function PaymentForm() {
     const { currentUser } = useContext(UserContext);
@@ -11,6 +12,7 @@ function PaymentForm() {
     const stripe = useStripe();
     const elements = useElements();
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+    const navigate = useNavigate()
     
     const paymentHandler = async (e) => {
         e.preventDefault();
@@ -59,7 +61,11 @@ function PaymentForm() {
                         name: currentUser ? currentUser.displayName : 'Visitor',
                     },
                 },
-            });
+                
+            }
+        
+        
+        );
     
             setIsProcessingPayment(false); // Reset processing state
     
@@ -67,8 +73,9 @@ function PaymentForm() {
                 alert(paymentResult.error.message);
             } else {
                 if (paymentResult.paymentIntent.status === 'succeeded') {
-                    alert('Payment successful!');
+                    console.log('Payment successful!');
                     clearCart()
+                    navigate('/payment-successful')
                 }
             }
         } catch (error) {
@@ -81,7 +88,7 @@ function PaymentForm() {
         <>
            <form onSubmit={paymentHandler} className="flex flex-col space-y-4">
     <div className="w-full">
-        <CardElement className="border border-gray-300 rounded-lg p-2" />
+        <CardElement className="border border-gray-300  p-2" />
     </div>
     <button 
         type="submit" 
