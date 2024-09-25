@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserContext';
 import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
-    const { currentUser } = useContext(UserContext); // Access current user from context
+    const { currentUser } = useContext(UserContext); 
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">

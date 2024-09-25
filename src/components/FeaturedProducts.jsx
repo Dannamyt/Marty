@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ProductCard from './ProductCard'; // Adjust path as necessary
+import ProductCard from './ProductCard'; 
 
 const FeaturedProducts = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // Fetch products from DummyJSON API
     const fetchProducts = async () => {
         try {
             const response = await fetch('https://dummyjson.com/products');
@@ -14,7 +13,7 @@ const FeaturedProducts = () => {
                 throw new Error('Failed to fetch products');
             }
             const data = await response.json();
-            setProducts(data.products); // Store all products
+            setProducts(data.products); 
         } catch (err) {
             setError(err.message);
         } finally {
@@ -29,7 +28,6 @@ const FeaturedProducts = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
-    // Get unique categories
     const categories = [...new Set(products.map(product => product.category))];
 
     return (
@@ -37,7 +35,6 @@ const FeaturedProducts = () => {
             <h2 className="text-3xl font-libre mb-4">Featured Products</h2>
             <div className="flex flex-wrap justify-center">
                 {categories.map(category => {
-                    // Get one product from each category
                     const productFromCategory = products.find(product => product.category === category);
                     return (
                         productFromCategory && (

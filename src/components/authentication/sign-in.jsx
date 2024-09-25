@@ -94,7 +94,7 @@ import {
                     className="w-full p-2 mb-4 border border-gray-300 rounded"
                 />
                 {errorMessage && (
-                <p className="mb-4 text-red-500">{errorMessage}</p> // Display error message below the form
+                <p className="mb-4 text-red-500">{errorMessage}</p>
             )}
                 <button type="submit" className="w-full bg-gray-900 text-white font-bold py-2 rounded">Log In</button>
                 <button type="button" onClick={signInWithGoogle} className="w-full mt-2 bg-gray-200 text-gray-900 py-2 rounded">Log in with Google</button>

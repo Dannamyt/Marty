@@ -23,7 +23,6 @@ const CheckoutPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic (e.g., API call)
         console.log('Shipping Info:', shippingInfo);
     };
 

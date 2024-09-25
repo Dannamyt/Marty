@@ -11,7 +11,6 @@ const ProductCard = ({ product }) => {
     addToCart({...product,quantity:1});
   };
   
-  // console.log(product)
   return (
     <div className="product-card w-72 p-4">
       <NavLink to={`/products/${product.id}`}>

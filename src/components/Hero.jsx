@@ -1,7 +1,6 @@
 import banner7 from '../assets/banner7.jpg'; 
 import ads1 from '../assets/ads1.jpg'; 
-import ads2 from '../assets/ads2.jpg'; 
-import ads3 from '../assets/ads3.jpg'; 
+
 import ads4 from '../assets/ads4.jpg'; 
 import rightArrow2 from '../assets/rightArrow2.png';
 
@@ -9,7 +8,6 @@ const Hero = () => {
     return (
         <div>
             <div className="relative flex items-center">
-                {/* Banner Image */}
                 <img
                     src={banner7}
                     alt="Fashion Banner"

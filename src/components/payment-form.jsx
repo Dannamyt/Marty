@@ -19,17 +19,16 @@ function PaymentForm() {
     
         if (!stripe || !elements) return;
     
-        setIsProcessingPayment(true); // Start processing
+        setIsProcessingPayment(true); 
     
-        // Calculate amount in cents and round it
-        const amountInCents = Math.round(cartTotal * 100); // Convert total to cents and round
-        console.log('Amount being charged:', amountInCents); // Log for debugging
+        const amountInCents = Math.round(cartTotal * 100); 
+        console.log('Amount being charged:', amountInCents); 
     
-        const minimumChargeAmount = 50; // Minimum charge in cents
+        const minimumChargeAmount = 50;
     
         if (amountInCents < minimumChargeAmount) {
             alert(`The minimum charge amount is $${minimumChargeAmount / 100}. Please add more items to your cart.`);
-            setIsProcessingPayment(false); // Reset processing state
+            setIsProcessingPayment(false); 
             return;
         }
     
@@ -39,7 +38,7 @@ function PaymentForm() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ amount: amountInCents }), // Amount in cents
+                body: JSON.stringify({ amount: amountInCents }),
             });
     
             if (!response.ok) {
@@ -67,7 +66,7 @@ function PaymentForm() {
         
         );
     
-            setIsProcessingPayment(false); // Reset processing state
+            setIsProcessingPayment(false);
     
             if (paymentResult.error) {
                 alert(paymentResult.error.message);

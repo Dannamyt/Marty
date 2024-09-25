@@ -29,7 +29,6 @@ const CartDropdown = ({ cartItems, removeFromCart, cartTotal }) => {
                     ))}
                 </ul>
             )}
-            {/* Total Price */}
             {cartItems.length > 0 && (
                 <div className="p-4 border-t border-gray-200">
                     <h2 className="font-semibold">Total Price: ${cartTotal.toFixed(2)}</h2>
