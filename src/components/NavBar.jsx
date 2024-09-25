@@ -44,6 +44,7 @@ function NavBar() {
                     </button>
                 </div>
 
+                {/* Hamburger Menu for Mobile */}
                 <div className="md:hidden">
                     <button onClick={toggleMobileMenu} className="text-gray-600 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,16 +54,28 @@ function NavBar() {
                 </div>
             </div>
 
+            {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden font-switzer bg-white p-2 border-b h-screen border-gray-900 shadow-lg">
-                    <NavLink to="/" className="block px-4 py-2 hover:bg-gray-200">HOME</NavLink>
-                    <NavLink to="/shop" className="block px-4 py-2 hover:bg-gray-200">SHOP</NavLink>
-                    {currentUser ? (
-                        <NavLink onClick={signOutUser} className="block px-4 py-2 hover:bg-gray-200">SIGN OUT</NavLink>
-                    ) : (
-                        <NavLink to="/authentication" className="block px-4 py-2 hover:bg-gray-200">SIGN IN</NavLink>
-                    )}
-                    <p className="block px-4 py-2">CART({cartCount})</p>
+                <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-400 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                    <div className="flex justify-end p-4">
+                        <button onClick={toggleMobileMenu} className="text-gray-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex flex-col items-center mt-10">
+                        <NavLink to="/" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">HOME</NavLink>
+                        <NavLink to="/shop" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">SHOP</NavLink>
+                        {currentUser ? (
+                            <NavLink onClick={signOutUser} className="block px-4 py-2 hover:bg-gray-200 w-full text-center">SIGN OUT</NavLink>
+                        ) : (
+                            <NavLink to="/authentication" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">SIGN IN</NavLink>
+                        )}
+                        <NavLink to={'/checkout'} className={`block px-4 py-2 hover:bg-gray-200 w-full text-center`}>
+                            CART({cartCount})
+                        </NavLink>
+                    </div>
                 </div>
             )}
 

@@ -5,7 +5,7 @@ function Authentication(){
     return(
        
        <>
-        <div className="flex flex-col md:flex-row h-screen">
+        <div className="flex flex-col md:flex-row ">
             <div className="flex-1 flex items-center justify-center">
                 <SignUp />
             </div>

@@ -6,18 +6,19 @@ const CategoryList = ({ categories, selectedCategory, setSelectedCategory }) => 
 
   return (
     <div>
-      <ul className="flex gap-10 font-switzer justify-center mx-9 mt-20">
+    <ul className="flex flex-col sm:flex-row gap-4 sm:gap-10 font-switzer justify-center mx-4 sm:mx-9 mt-20">
         {categories.map((category) => (
-          <li
-            key={category}
-            onClick={() => handleCategorySelect(category)}
-            style={{ cursor: 'pointer', fontWeight: selectedCategory === category ? 'bold' : 'normal' }} className="text-xl"
-          >
-            {category.toUpperCase()}
-          </li>
+            <li
+                key={category}
+                onClick={() => handleCategorySelect(category)}
+                style={{ cursor: 'pointer', fontWeight: selectedCategory === category ? 'bold' : 'normal' }}
+                className="text-xl sm:text-2xl"
+            >
+                {category.toUpperCase()}
+            </li>
         ))}
-      </ul>
-    </div>
+    </ul>
+</div>
   );
 };
 
